@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>WOW POS - Sistema de Gestión</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET Y BASE ===== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0A0A0F;
+            color: #FFFFFF;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .app-container {
+            max-width: 420px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 24px;
+            padding: 30px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* ===== LOGO ===== */
+        .logo-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo-container img {
+            max-width: 180px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .logo-container .version {
+            color: #C0C0C0;
+            font-size: 10px;
+            letter-spacing: 4px;
+            opacity: 0.3;
+            margin-top: 8px;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        /* ===== LOGIN ===== */
+        .login-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            text-align: center;
+            color: #C0C0C0;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            opacity: 0.6;
+        }
+        
+        .login-input {
+            width: 100%;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            color: #FFFFFF;
+            font-size: 1.2rem;
+            text-align: center;
+            letter-spacing: 12px;
+            font-family: 'Space Mono', monospace;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+        
+        .login-input:focus {
+            outline: none;
+            border-color: #00D4FF;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.05);
+        }
+        
+        .login-input::placeholder {
+            color: #666;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+        
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #00D4FF, #7B2FBE);
+            color: #FFFFFF;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:active {
+            transform: scale(0.97);
+        }
+        
+        .btn-outline {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            background: transparent;
+            color: #C0C0C0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .btn-outline:hover {
+            border-color: #00D4FF;
+            color: #00D4FF;
+        }
+        
+        .error-message {
+            color: #FF0055;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        /* ===== DIVISOR ===== */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .divider .line {
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .divider .text {
+            font-size: 0.7rem;
+            color: #666;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.6rem;
+            color: #444;
+            letter-spacing: 2px;
+        }
+        
+        .footer span {
+            color: #00D4FF;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- ===== LOGO ===== -->
+        <div class="logo-container">
+            <img src="WOW POS.png" alt="WOW POS Logo">
+            <div class="version">✦ SISTEMA DE GESTIÓN ✦</div>
+        </div>
+        
+        <!-- ===== LOGIN ===== -->
+        <div class="login-title">🔐 Acceso al Sistema</div>
+        
+        <input type="password" class="login-input" id="pinInput" placeholder="PIN de 6 dígitos" maxlength="6" inputmode="numeric">
+        
+        <button class="btn-primary" onclick="verificarPIN()">🔓 Acceder</button>
+        
+        <div class="error-message" id="errorMessage">❌ PIN incorrecto. Intenta de nuevo.</div>
+        
+        <div class="divider">
+            <span class="line"></span>
+            <span class="text">o</span>
+            <span class="line"></span>
+        </div>
+        
+        <button class="btn-outline" onclick="probarDemo()">✦ Probar Demo Gratis</button>
+        
+        <!-- ===== FOOTER ===== -->
+        <div class="footer">
+            <span>⚡</span> WOW POS v1.0 <span>⚡</span>
+        </div>
+        
+    </div>
+
+    <script>
+        // =============================================
+        // USUARIOS
+        // =============================================
+        const USUARIOS = {
+            '123456': { nombre: 'Administrador', rol: 'admin' },
+            '111111': { nombre: 'Juan', rol: 'vendedor' },
+            '222222': { nombre: 'Maria', rol: 'vendedor' }
+        };
+        
+        // =============================================
+        // VERIFICAR PIN
+        // =============================================
+        function verificarPIN() {
+            const pin = document.getElementById('pinInput').value;
+            const error = document.getElementById('errorMessage');
+            
+            if (USUARIOS[pin]) {
+                error.classList.remove('show');
+                alert(`✅ Bienvenido ${USUARIOS[pin].nombre}!`);
+                // Aquí iría la navegación al dashboard
+            } else {
+                error.classList.add('show');
+                document.getElementById('pinInput').value = '';
+                document.getElementById('pinInput').focus();
+            }
+        }
+        
+        // =============================================
+        // PROBAR DEMO
+        // =============================================
+        function probarDemo() {
+            alert('🚀 ¡Bienvenido a la demo de WOW POS!\n\n🔓 Usa el PIN: 123456\n👤 Usuario: Administrador\n\n📱 Explora todas las funciones.');
+            document.getElementById('pinInput').value = '123456';
+            verificarPIN();
+        }
+        
+        // =============================================
+        // ENTER PARA LOGIN
+        // =============================================
+        document.getElementById('pinInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                verificarPIN();
+            }
+        });
+    </script>
+</body>
+</html>
